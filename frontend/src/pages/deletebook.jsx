@@ -40,7 +40,7 @@ const Deletebook = () => {
   const handleDeleteBook = () => {
     setLoading(true);
     axios
-      .delete(`https://bookapp-8k1h.onrender.com/books/${id}`)
+      .delete(`http://localhost:3000/${id}`)
       .then(() => {
         setLoading(false);
         navigate('/');

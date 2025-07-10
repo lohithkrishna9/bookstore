@@ -14,7 +14,7 @@ const Editbook=() =>{
   useEffect(() => {
     console.log("book ID from URL:", id); 
     setLoading(true);
-    axios.get(`https://bookapp-8k1h.onrender.com/books/${id}`)
+    axios.get(`http://localhost:3000/${id}`)
     .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publisinghyear)
@@ -34,7 +34,7 @@ const Editbook=() =>{
     };
     setLoading(true);
     axios
-      .put(`https://bookapp-8k1h.onrender.com/${id}`, data)
+      .put(`http://localhost:3000/${id}`, data)
       .then(() => {
         setLoading(false);
         navigate('/');

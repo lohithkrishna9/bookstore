@@ -26,7 +26,7 @@ const Createbook = () => {
 
     setLoading(true);
     axios
-      .post('https://bookapp-8k1h.onrender.com/books', data)
+      .post('http://localhost:3000/', data)
       .then(() => {
         setLoading(false);
         navigate('/');

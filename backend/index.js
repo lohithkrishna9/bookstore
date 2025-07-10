@@ -1,46 +1,40 @@
-// file: server.js
-import express, { request, response } from "express";
-import { PORT,mongoDBURL } from "./config.js";
-import mongoose from "mongoose";
-import bookroute from "./routes/bookroutes.js"
-import cors from 'cors'
+// server.js
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+
+import { PORT, mongoDBURL } from './config.js';
+import bookroute from './routes/bookroutes.js';
 
 const app = express();
 
-// Optional: built‑in JSON body parsing
+// 1) Middleware
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: ['http://localhost:5173', 'https://bookapp-8k1h.onrender.com'],
+  credentials: true
 }));
+
+// 2) Logging (optional)
 app.use((req, res, next) => {
-  console.log("Body:", req.body);
+  console.log(`${req.method} ${req.url}`, 'Body:', req.body);
   next();
 });
 
+// 3) Routes
+app.get('/', (req, res) => res.send('Welcome'));
+app.use('/books', bookroute);
 
-app.get("/", (req, res) => {
-  console.log(`${req.method} ${req.url}`);
-  return res.status(200).send("Welcome");
-});
-app.use('/books',bookroute);
-
+// 4) DB + Server start
 mongoose
   .connect(mongoDBURL)
   .then(() => {
-    console.log("Connected to MongoDB Atlas");
-
+    console.log('✅ Connected to MongoDB Atlas');
     app.listen(PORT, () => {
-      console.log(`App is listening on port: ${PORT}`);
-      console.log(`http://localhost:${PORT}`);
+      console.log(`🚀 App listening on http://localhost:${PORT}`);
     });
   })
-  .catch((error) => {
-    console.log("MongoDB connection failed:", error.message);
+  .catch(err => {
+    console.error('❌ MongoDB connection failed:', err.message);
+    process.exit(1);
   });
-
-
-app.listen(PORT, () => {
-  console.log(`App is listening on port: ${PORT}`);
-  console.log(`http://localhost:${PORT}`)
-});
-
