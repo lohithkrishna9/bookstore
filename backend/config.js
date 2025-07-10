@@ -1,3 +1,6 @@
-// file: config.js
+// config.js
+import dotenv from 'dotenv';
+dotenv.config();
+
 export const PORT = process.env.PORT || 3000;
-export const mongoDBURL = 'mongodb+srv://pamushravya:b9F78eUxDVD2Tisf@cluster0.anray.mongodb.net/bookstore?retryWrites=true&w=majority&appName=Cluster0';
+export const mongoDBURL = process.env.MONGO_DB_URL;
