@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import BackButton from '../../componets/backbutton';
-import Spinner from '../../componets/spinner';
+import BackButton from '../componets/backbutton';
+import Spinner from '../componets/spinner';
 
 // Error Boundary to catch runtime errors
 class ErrorBoundary extends React.Component {
