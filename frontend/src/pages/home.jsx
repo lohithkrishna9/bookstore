@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:3000/')
+      .get(`${BASE_URL}`)
       .then((response) => {
         setBooks(response.data);
         setLoading(false);

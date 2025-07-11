@@ -3,7 +3,7 @@ import BackButton from '../components/backbutton';
 import Spinner from '../components/spinner';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const Editbook=() =>{
     const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -14,7 +14,7 @@ const Editbook=() =>{
   useEffect(() => {
     console.log("book ID from URL:", id); 
     setLoading(true);
-    axios.get(`http://localhost:3000/${id}`)
+    axios.get(`${BASE_URL}/${id}`)
     .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publisinghyear)
@@ -34,7 +34,7 @@ const Editbook=() =>{
     };
     setLoading(true);
     axios
-      .put(`http://localhost:3000/${id}`, data)
+      .put(`${BASE_URL}/${id}`, data)
       .then(() => {
         setLoading(false);
         navigate('/');

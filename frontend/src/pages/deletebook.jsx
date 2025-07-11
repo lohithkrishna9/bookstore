@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../components/backbutton';
 import Spinner from '../components/spinner';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 // Error Boundary to catch runtime errors
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -40,7 +40,7 @@ const Deletebook = () => {
   const handleDeleteBook = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:3000/${id}`)
+      .delete(`${BASE_URL}/${id}`)
       .then(() => {
         setLoading(false);
         navigate('/');

@@ -1,5 +1,5 @@
 import {React,useEffect,useState} from 'react'
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/backbutton';
@@ -11,7 +11,7 @@ const Show = () => {const [book, setBook] = useState({});
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:3000/${id}`)
+      .get(`${BASE_URL}/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);
