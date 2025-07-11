@@ -2,8 +2,8 @@ import {React,useEffect,useState} from 'react'
 
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import BackButton from '../componets/backbutton';
-import Spinner from '../componets/spinner';
+import BackButton from '../components/backbutton';
+import Spinner from '../components/spinner';
 const Show = () => {const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
